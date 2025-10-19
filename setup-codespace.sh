@@ -11,7 +11,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 # Install additional PHP extensions if needed
 echo "🔧 Installing PHP extensions..."
-sudo apt-get install -y php-sqlite3 php-xml php-curl php-mbstring php-zip php-gd
+sudo apt-get install -y php-sqlite3 php-xml php-curl php-mbstring php-zip php-gd php-dom php-tokenizer php-session php-fileinfo php-pdo php-pdo-sqlite
 
 # Copy environment file
 echo "⚙️ Setting up environment configuration..."

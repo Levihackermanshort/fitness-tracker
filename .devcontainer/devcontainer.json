@@ -1,6 +1,6 @@
 {
     "name": "Fitness Tracker Laravel App",
-    "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
     "features": {
         "ghcr.io/devcontainers/features/php:1": {
             "version": "8.2"
@@ -30,6 +30,6 @@
             "onAutoForward": "notify"
         }
     },
-    "postCreateCommand": "apt-get update && apt-get install -y mysql-client && composer install && php artisan key:generate",
+    "postCreateCommand": "apt-get update && apt-get install -y php-sqlite3 php-xml php-curl php-mbstring php-zip php-gd php-dom php-tokenizer php-session php-fileinfo && composer install && php artisan key:generate && php artisan migrate:fresh --seed",
     "remoteUser": "vscode"
 }
