@@ -11,14 +11,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 # Install additional PHP extensions if needed
 echo "🔧 Installing PHP extensions..."
-sudo apt-get install -y php-mysql php-xml php-curl php-mbstring php-zip php-gd
-
-# Create MySQL database
-echo "🗄️ Setting up MySQL database..."
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS fitness_tracker;"
-sudo mysql -e "CREATE USER IF NOT EXISTS 'fitness_user'@'localhost' IDENTIFIED BY 'fitness_password';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON fitness_tracker.* TO 'fitness_user'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+sudo apt-get install -y php-sqlite3 php-xml php-curl php-mbstring php-zip php-gd
 
 # Copy environment file
 echo "⚙️ Setting up environment configuration..."
@@ -26,14 +19,10 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Update .env file with MySQL configuration
+# Update .env file with SQLite configuration for Codespaces
 echo "🔧 Configuring database settings..."
-sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=mysql/' .env
-sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' .env
-sed -i 's/DB_PORT=.*/DB_PORT=3306/' .env
-sed -i 's/DB_DATABASE=.*/DB_DATABASE=fitness_tracker/' .env
-sed -i 's/DB_USERNAME=.*/DB_USERNAME=fitness_user/' .env
-sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=fitness_password/' .env
+sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
+sed -i 's/DB_DATABASE=.*/DB_DATABASE=database\/database.sqlite/' .env
 
 # Generate application key
 echo "🔑 Generating application key..."
